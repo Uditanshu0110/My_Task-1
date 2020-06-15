@@ -3,7 +3,8 @@ provider "aws" {
   profile    = "default"
 }
 
-#Creating Key Pair
+# Key-Pair
+
 resource "tls_private_key" "UDIT" {
     algorithm = "RSA"
 }
@@ -20,7 +21,7 @@ resource "aws_key_pair" "mykey1" {
     public_key = tls_private_key.UDIT.public_key_openssh
 }
 
-# Create Security Group
+#Security Group
 
 resource "aws_security_group" "Allow_Traffic" {
   name        = "Security_Guard"
@@ -90,7 +91,8 @@ resource "aws_instance" "FIRST_OS" {
     }
 }
 
-#Creating and Attaching of Volume
+#Creating Volume and Attaching Volume
+
 resource "aws_ebs_volume" "FirstOS_vol" {
     availability_zone = aws_instance.FIRST_OS.availability_zone
     size              = 1
@@ -134,8 +136,7 @@ resource "null_resource" "NullRemote"  {
    }
  }
 
-#Creating S3 Bucket
-
+#S3 Bucket 
 resource "aws_s3_bucket" "my_first_bucket" {
      bucket  = "uditanshuimg"
      acl     = "public-read"
@@ -152,10 +153,10 @@ resource "aws_s3_bucket" "my_first_bucket" {
   
 }
 
-#CloudFront
 
+#CloudFront Distribution
 locals {
-   s3_origin_id = "S3-${aws_s3_bucket.my_first_bucket.bucket}"
+   s3_origin_id = "S3-aws_s3_bucket.my_first_bucket.bucket"
  }
 
 
@@ -211,7 +212,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_network" {
 provisioner "remote-exec" {
         inline  = [
             "sudo su << EOF",
-            "echo \"<img src='my_first_bucket'>\" >> /var/www/html/terrapage.html",
+            "echo \"<img src='my_first_bucket'>\" >> /var/www/html/udit.html",
             "EOF"
         ]
   
