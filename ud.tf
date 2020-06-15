@@ -3,6 +3,7 @@ provider "aws" {
   profile    = "default"
 }
 
+#Creating Key Pair
 resource "tls_private_key" "UDIT" {
     algorithm = "RSA"
 }
@@ -18,6 +19,8 @@ resource "aws_key_pair" "mykey1" {
     key_name   = "mykey_1"
     public_key = tls_private_key.UDIT.public_key_openssh
 }
+
+# Create Security Group
 
 resource "aws_security_group" "Allow_Traffic" {
   name        = "Security_Guard"
@@ -52,6 +55,8 @@ resource "aws_security_group" "Allow_Traffic" {
   }
 }
 
+#Launching Instance
+
 resource "aws_instance" "FIRST_OS" {
   ami           = "ami-0447a12f28fddb066"
   instance_type   = "t2.micro"
@@ -84,6 +89,8 @@ resource "aws_instance" "FIRST_OS" {
       Name = "TerraFormOS"
     }
 }
+
+#Creating and Attaching of Volume
 resource "aws_ebs_volume" "FirstOS_vol" {
     availability_zone = aws_instance.FIRST_OS.availability_zone
     size              = 1
@@ -93,7 +100,7 @@ resource "aws_ebs_volume" "FirstOS_vol" {
     }
 }
 resource "aws_volume_attachment" "vol_attach" {
-  device_name = "/dev/sdh"
+  device_name = "/dev/sdf"
   volume_id   = aws_ebs_volume.FirstOS_vol.id
   instance_id = aws_instance.FIRST_OS.id
   force_detach = true
@@ -126,6 +133,9 @@ resource "null_resource" "NullRemote"  {
      ]
    }
  }
+
+#Creating S3 Bucket
+
 resource "aws_s3_bucket" "my_first_bucket" {
      bucket  = "uditanshuimg"
      acl     = "public-read"
@@ -141,6 +151,9 @@ resource "aws_s3_bucket" "my_first_bucket" {
       acl    = "public-read"
   
 }
+
+#CloudFront
+
 locals {
    s3_origin_id = "S3-${aws_s3_bucket.my_first_bucket.bucket}"
  }
@@ -152,7 +165,6 @@ resource "aws_cloudfront_distribution" "s3_distribution_network" {
     domain_name = aws_s3_bucket.my_first_bucket.bucket_domain_name
    origin_id   = local.s3_origin_id
   }
-
 
   enabled     = true
  
