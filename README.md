@@ -53,7 +53,8 @@ resource "local_file" "private_key" {
 resource "aws_key_pair" "mykey1" {
     key_name   = "mykey_1"
     public_key = tls_private_key.UDIT.public_key_openssh
-} ```
+}
+```
 
 ### Create Security group which allow the port 80 and 22:
 
