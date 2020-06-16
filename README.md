@@ -13,10 +13,11 @@ that end-state and executes the plan to provision the infrastructure.
 featured services** from data centers globally. Millions of customers—including the fastest-growing startups, largest 
 enterprises, and leading government agencies—are using AWS to lower costs, become more agile, and innovate faster.
 
-Prerequisite for this you should have preinstalled Terraform in your system and also you should have your AWS account ready.
+
+***Prerequisite for this you should have preinstalled Terraform in your system and also you should have your AWS account ready.***
 
 
-Here is a basic overview that what we have to do for deploying the whole Infrastructure using TerraForm.
+## Here is a basic overview that what we have to do for deploying the whole Infrastructure using TerraForm.
 
 1. We will create the key and security group which allow the port 80.
 
