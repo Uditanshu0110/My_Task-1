@@ -2,14 +2,15 @@
 
 ## TERRAFORM
 
-** Terraform ** is an open source “Infrastructure as Code” tool, created by ** HashiCorp **. A declarative coding tool, Terraform 
-enables developers to use a high-level configuration language called ** HCL (HashiCorp Configuration Language) ** to describe
+**Terraform** is an open source “Infrastructure as Code” tool, created by **HashiCorp**. A declarative coding tool, Terraform 
+enables developers to use a high-level configuration language called **HCL (HashiCorp Configuration Language)** to describe
 the desired “end-state” cloud or on-premises infrastructure for running an application. It then generates a plan for reaching
 that end-state and executes the plan to provision the infrastructure.
 
 ## AWS (Amazon Web Services)
-** Amazon Web Services (AWS) ** is the world’s most comprehensive and broadly adopted cloud platform, offering over ** 175 fully 
-featured services ** from data centers globally. Millions of customers—including the fastest-growing startups, largest 
+
+**Amazon Web Services (AWS)** is the world’s most comprehensive and broadly adopted cloud platform, offering over **175 fully 
+featured services** from data centers globally. Millions of customers—including the fastest-growing startups, largest 
 enterprises, and leading government agencies—are using AWS to lower costs, become more agile, and innovate faster.
 
 Prerequisite for this you should have preinstalled Terraform in your system and also you should have your AWS account ready.
